@@ -1,9 +1,13 @@
-import { INITIALIZING_APP_SUCCESS, SET_COMPETITIONS, SET_TEAMS } from './types';
+import { INITIALIZING_APP_SUCCESS, SET_COMPETITIONS, SET_TEAMS, SET_TEAM_CALENDAR, CLEAN_TEAM_CALENDAR } from './types';
 
 let initialState = {
 	initialized: false,
 	competitions: [],
 	teams: [],
+	teamCalendar: {
+		status: 'fetching',
+		list: [],
+	},
 }
 
 const handlers = {
@@ -25,6 +29,28 @@ const handlers = {
 		return {
 			...state,
 			teams,
+		}
+	},
+	[SET_TEAM_CALENDAR]: (state, action) => {
+		const { matches, currentTeam } = action.payload
+		return {
+			...state,
+			currentTeam: {...currentTeam},
+			teamCalendar: {
+				...state.teamCalendar,
+				status: 'received',
+				list: [...matches],
+			}
+		}
+	},
+	[CLEAN_TEAM_CALENDAR]: (state, action) => {
+		return {
+			...state,
+			currentTeam: null,
+			teamCalendar: {
+				status: 'fetching',
+				list: [],
+			}
 		}
 	},
 };

@@ -6,7 +6,7 @@ const renderCards = (data, getLinkForTeam) => {
   return data.map(item => {
     return (
       <Col sm={3} className={'mb-3'}>
-        <NavLink to={getLinkForTeam(item)}>
+        <NavLink to={getLinkForTeam(item)} className={'text-dark'}>
           <Card className="text-center h-100">
             <Card.Body>
               <Card.Title>{item.title}</Card.Title>
