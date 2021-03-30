@@ -2,6 +2,10 @@ import React from 'react';
 import { Table } from 'react-bootstrap';
 
 const TeamTable = ({ list }) => {
+
+  if (list.length === 0) {
+    return <h4 className="text-center">Нет игр. Выберите другой период.</h4>
+  }
   return (
     <Table bordered hover size="sm" className='text-center'>
       <thead>
