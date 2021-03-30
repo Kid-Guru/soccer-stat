@@ -33,7 +33,7 @@ const TeamCalendar = (props) => {
           <Card className={'h-100'}>
             <Card.Body>
               <Row>
-                <Col md={'auto'}>
+                <Col xs={'auto'}>
                   <Card.Img src={props.currentTeam.crestUrl} style={{ width: 100 + 'px' }} />
                 </Col>
                 <Col>
