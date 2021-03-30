@@ -2,11 +2,11 @@ import React from 'react';
 import { Col, Container, Row, Dropdown, Form, Button, Card } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
-const renderCards = (data, getLinkForTeam) => {
+const renderCards = (data, getLink) => {
   return data.map(item => {
     return (
-      <Col sm={3} className={'mb-3'}>
-        <NavLink to={getLinkForTeam(item)} className={'text-dark'}>
+      <Col sm={6} md={4} lg={3} className={'mb-3'}>
+        <NavLink to={getLink(item)} className={'text-dark'}>
           <Card className="text-center h-100">
             <Card.Body>
               <Card.Title>{item.title}</Card.Title>
@@ -20,7 +20,6 @@ const renderCards = (data, getLinkForTeam) => {
 }
 
 const List = (props) => {
-  console.log(props)
   return (
     <Container>
       <Dropdown>
@@ -50,7 +49,7 @@ const List = (props) => {
 
 
       <Row className="my-4">
-        {renderCards(props.listItems, props.getLinkForTeam)}
+        {renderCards(props.listItems, props.getLink)}
       </Row>
     </Container>
   )

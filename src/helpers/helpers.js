@@ -18,3 +18,13 @@ export const getScoreMatch = (match) => {
   }
   return ({homeTeam: '--', awayTeam: '--'})
 }
+
+export const getLastMonthPeriod = () => {
+  const d = new Date()
+  const dateTo = d.toLocaleDateString()
+
+  d.setMonth(d.getMonth() - 1)
+  const dateFrom = d.toLocaleDateString()
+
+  return({dateTo: dateTo.split('.').reverse().join('-'), dateFrom: dateFrom.split('.').reverse().join('-')})
+}

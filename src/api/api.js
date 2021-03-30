@@ -34,3 +34,10 @@ export const requestTeamCalendarByPeriod = (id, dateFrom, dateTo) => {
       return response.data;
     });
 }
+
+export const requestCompetitionsCalendarByPeriod = (id, dateFrom, dateTo) => {
+  return instanceAxios.get(`competitions/${id}/matches?dateFrom=${dateFrom}&dateTo=${dateTo}`)
+    .then(response => {
+      return response.data;
+    });
+}

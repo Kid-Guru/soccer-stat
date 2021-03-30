@@ -4,11 +4,11 @@ import { getCompetitions } from '../../redux/app/selectors';
 import List from './List';
 
 const ListCompetitionsContainer = (props) => {
-  const getLinkForTeam = (team) => {
-    return ``
+  const getLinkForCompetition = (comp) => {
+    return `/competitions/${comp.id}`
   }
   return (
-    <List listItems={ props.listItems } getLinkForTeam={getLinkForTeam} />
+    <List listItems={ props.listItems } getLink={getLinkForCompetition} />
   )
 }
 

@@ -1,5 +1,5 @@
-import { INITIALIZING_APP_SUCCESS, SET_COMPETITIONS, SET_TEAMS, SET_TEAM_CALENDAR, CLEAN_TEAM_CALENDAR } from './types';
-import { getCompetitions, getTeams, requestTeamCalendar, requestTeamCalendarByPeriod } from '../../api/api.js';
+import { INITIALIZING_APP_SUCCESS, SET_COMPETITIONS, SET_TEAMS, SET_TEAM_CALENDAR, CLEAN_TEAM_CALENDAR, SET_COMPETITION_CALENDAR, CLEAN_COMPETITION_CALENDAR } from './types';
+import { getCompetitions, getTeams, requestTeamCalendar, requestTeamCalendarByPeriod, requestCompetitionsCalendarByPeriod } from '../../api/api.js';
 import { getDateTimeInLocal, getScoreMatch } from '../../helpers/helpers.js';
 import pick from 'lodash/pick';
 
@@ -12,7 +12,7 @@ export const initializingApp = () => (dispatch) => {
 		.then(([competitionsData, teamsData]) => {
 			const processedCompetitionsArray = competitionsData.competitions
 				.filter(c => c.plan === 'TIER_ONE')
-				.map(c => pick(c, ['id', 'name', 'area', 'numberOfAvailableSeasons', 'code']))
+				.map(c => pick(c, ['id', 'name', 'area', 'numberOfAvailableSeasons', 'code', 'emblemUrl']))
 			const processedTeamsArray = teamsData.teams
 				.map(c => pick(c, ['id', 'name', 'shortName', 'area', 'crestUrl', 'website']))
 
@@ -34,17 +34,30 @@ export const getTeamCalendar = (id, dateFrom, dateTo) => async (dispatch) => {
 	} else {
 		teamCalendar = await requestTeamCalendarByPeriod(id, dateFrom, dateTo)
 	}
+
 	const processedTeamCalendar = teamCalendar.matches.map(m => ({
 		id: m.id,
 		...getDateTimeInLocal(m.utcDate),
 		competition: { id: m.competition.id, name: m.competition.name },
-		rival: id === m.awayTeam.id ? m.awayTeam : m.homeTeam,
+		rival: id == m.awayTeam.id ? m.homeTeam : m.awayTeam,
 		score: getScoreMatch(m),
 		winner: m.winner === 'HOME_TEAM' ? m.homeTeam : m.awayTeam,
 	}))
-	// const currentTeamId = teamCalendar.matches.length === 0
-	// 	? null : id === teamCalendar.matches[0].awayTeam.id
-	// 		? teamCalendar.matches[0].awayTeam : teamCalendar.matches[0].homeTeam
+
 	const currentTeamId = id
 	dispatch(setTeamCalendar(processedTeamCalendar, currentTeamId))
+}
+
+const setCompetitionCalendar = (matches, currentCompetitionId) => ({ type: SET_COMPETITION_CALENDAR, payload: { matches, currentCompetitionId } })
+export const cleanCompetitionCalendar = () => ({ type: CLEAN_COMPETITION_CALENDAR })
+
+export const getCompetitionCalendar = (id, dateFrom, dateTo) => async (dispatch) => {
+	let competitionCalendar = await requestCompetitionsCalendarByPeriod(id, dateFrom, dateTo)
+
+	const processedCompetitionCalendar = competitionCalendar.matches
+		.map(m => pick(m, ['id', 'homeTeam', 'awayTeam', 'score', 'status', 'utcDate']))
+		.map(m => ({ ...m, ...getDateTimeInLocal(m.utcDate), score: getScoreMatch(m) }))
+	
+	const currentCompetitionId = id
+	dispatch(setCompetitionCalendar(processedCompetitionCalendar, currentCompetitionId))
 }

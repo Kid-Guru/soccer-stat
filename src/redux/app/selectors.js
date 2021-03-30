@@ -12,3 +12,10 @@ export const currentTeam = (state) => {
   const { currentTeamId } = state.app.teamCalendar
   return state.app.teams.find(t => t.id == currentTeamId)
 }
+
+export const getCompetitionCalendarStatus = (state) => state.app.competitionCalendar.status
+export const getCompetitionCalendarList = (state) => state.app.competitionCalendar.list
+export const currentCompetition = (state) => {
+  const { currentCompetitionId } = state.app.competitionCalendar
+  return state.app.competitions.find(c => c.id == currentCompetitionId)
+}

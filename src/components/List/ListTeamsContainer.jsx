@@ -8,7 +8,7 @@ const ListTeamsContainer = (props) => {
     return `/teams/${team.id}`
   }
   return (
-    <List listItems={props.listItems} getLinkForTeam={getLinkForTeam}/>
+    <List listItems={props.listItems} getLink={getLinkForTeam}/>
   )
 }
 
