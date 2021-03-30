@@ -1,5 +1,8 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+.nav-link.active {
+  background: var(--success)!important;
+}
 /* .App {
   text-align: center;
 }
