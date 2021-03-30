@@ -7,6 +7,7 @@ let initialState = {
 	teamCalendar: {
 		status: 'fetching',
 		list: [],
+		currentTeamId: null,
 	},
 }
 
@@ -32,24 +33,24 @@ const handlers = {
 		}
 	},
 	[SET_TEAM_CALENDAR]: (state, action) => {
-		const { matches, currentTeam } = action.payload
+		const { matches, currentTeamId } = action.payload
 		return {
 			...state,
-			currentTeam: {...currentTeam},
 			teamCalendar: {
 				...state.teamCalendar,
 				status: 'received',
 				list: [...matches],
+				currentTeamId: currentTeamId,
 			}
 		}
 	},
 	[CLEAN_TEAM_CALENDAR]: (state, action) => {
 		return {
 			...state,
-			currentTeam: null,
 			teamCalendar: {
 				status: 'fetching',
 				list: [],
+				currentTeamId: null,
 			}
 		}
 	},
