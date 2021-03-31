@@ -18,14 +18,14 @@ const DateFilterForm = ({ dateFrom: dateFromInitial = '', dateTo: dateToInitial 
   return (
     <Form onSubmit={formik.handleSubmit}>
       <Form.Group as={Row} controlId="dateFrom" className={'align-items-center'}>
-        <Form.Label column="sm" className={"align-middle"}>Конец периода</Form.Label>
+        <Form.Label column="sm" className={"align-middle"}>Начало периода</Form.Label>
         <Col sm="8">
           <Form.Control type="date" placeholder="Enter email" name={"dateFrom"} onChange={formik.handleChange} value={formik.values.dateFrom} required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" size="sm"/>
         </Col>
       </Form.Group>
 
       <Form.Group as={Row} controlId="dateTo" className={'align-items-center'}>
-        <Form.Label column="sm">Начало периода</Form.Label>
+        <Form.Label column="sm">Конец периода</Form.Label>
         <Col sm="8">
           <Form.Control type="date" placeholder="Enter email" name={"dateTo"} onChange={formik.handleChange} value={formik.values.dateTo} required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" size="sm"/>
         </Col>
