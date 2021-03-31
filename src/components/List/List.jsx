@@ -6,7 +6,7 @@ import TermFilterForm from '../Forms/TermFilterForm';
 const renderCards = (data, getLink) => {
   return data.map(item => {
     return (
-      <Col sm={6} md={4} lg={3} className={'mb-3'}>
+      <Col sm={6} md={4} lg={3} className={'mb-3'} key={item.id}>
         <NavLink to={getLink(item)} className={'text-dark'}>
           <Card className="text-center h-100">
             <Card.Body>
