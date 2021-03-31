@@ -8,7 +8,10 @@ const ListTeamsContainer = (props) => {
     return `/teams/${team.id}`
   }
   return (
-    <List listItems={props.listItems} getLink={getLinkForTeam}/>
+    <>
+      <h2 className={'text-center py-4'}>Список команд</h2>
+      <List listItems={props.listItems} getLink={getLinkForTeam} />
+    </>
   )
 }
 
