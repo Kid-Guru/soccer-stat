@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Container, Row, Dropdown, Form, Button, Card } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import TermFilterForm from '../Forms/TermFilterForm';
 
 const renderCards = (data, getLink) => {
   return data.map(item => {
@@ -19,21 +20,18 @@ const renderCards = (data, getLink) => {
   })
 }
 
+const getRedirectPath = (getLink, listItems) => {
+  return (term) => {
+    const item = listItems.find(i => i.title.toLowerCase().includes(term.toLowerCase()))
+    if (!item) return null
+    return getLink(item)
+  }
+}
+
 const List = (props) => {
   return (
     <Container>
-
-      <Form>
-        <Form.Row className="justify-content-end">
-          <Col xs="auto">
-            <Form.Control type="text" placeholder="Поиск" />
-          </Col>
-          <Col xs="auto">
-            <Button variant="success" type="submit">Найти</Button>
-          </Col>
-        </Form.Row>
-      </Form>
-
+      <TermFilterForm getRedirectPath={getRedirectPath(props.getLink, props.listItems)} />
       <Row className="my-4">
         {renderCards(props.listItems, props.getLink)}
       </Row>
