@@ -8,15 +8,13 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
-  <BrowserRouter>
-  <React.StrictMode>
-    
+  <BrowserRouter baseName={process.env.PUBLIC_URL}>
+    <React.StrictMode>
       <Provider store={store}>
         <App />
       </Provider>
-    
     </React.StrictMode>
-    </BrowserRouter>,
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
