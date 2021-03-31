@@ -22,31 +22,17 @@ const renderCards = (data, getLink) => {
 const List = (props) => {
   return (
     <Container>
-      <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
-          Выбрать
-        </Dropdown.Toggle>
 
-        <Dropdown.Menu>
-          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-
-
-
-      <Form inline>
-        <Form.Row>
-          <Col>
+      <Form>
+        <Form.Row className="justify-content-end">
+          <Col xs="auto">
             <Form.Control type="text" placeholder="Поиск" />
           </Col>
-          <Col sm={'auto'}>
+          <Col xs="auto">
             <Button variant="success" type="submit">Найти</Button>
           </Col>
         </Form.Row>
       </Form>
-
 
       <Row className="my-4">
         {renderCards(props.listItems, props.getLink)}
