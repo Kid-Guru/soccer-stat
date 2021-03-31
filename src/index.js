@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
-  <BrowserRouter baseName={process.env.PUBLIC_URL}>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <React.StrictMode>
       <Provider store={store}>
         <App />
