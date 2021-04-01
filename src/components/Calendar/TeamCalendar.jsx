@@ -42,7 +42,7 @@ const TeamCalendar = (props) => {
                   <Card.Text as="div" className="mt-3">
                     <p className="my-1">Founded: {props.currentTeam.founded}</p>
                     <p className="my-1">Club colors: {props.currentTeam.clubColors}</p>
-                    <p className="my-1">Email: <a href={`mailto:${props.currentTeam.email}`} target="_blank">props.currentTeam.email</a></p>
+                    <p className="my-1">Email: <a href={`mailto:${props.currentTeam.email}`} target="_blank">{props.currentTeam.email}</a></p>
                   </Card.Text>
                 </Col>
               </Row>
