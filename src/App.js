@@ -29,7 +29,6 @@ function App(props) {
         <Route path={to.TEAMS } exact render={() => <ListTeamsContainer />} />
         <Route path={`${to.TEAMS}/:id`} exact render={() => <TeamCalendar />} />
         <Route path={`${to.TEAMS}/:id${to.PERIOD}/:dateFrom/:dateTo`} exact render={() => <TeamCalendar />} />
-
       </Switch>
     </div>
   );

@@ -4,10 +4,10 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 
 const AppBar = () => {
   return (
-    <Navbar bg="light" variant="light">
+    <Navbar bg="success" variant="light" className="bg-success">
       <Container>
         <Navbar.Brand as={'h1'} className="mr-auto">SoccerStat App</Navbar.Brand>
-        <Nav variant="pills">
+        <Nav >
           <Nav.Link as={NavLink} to="/competitions">Турниры</Nav.Link>
           <Nav.Link as={NavLink} to="/teams">Команды</Nav.Link>
         </Nav>
