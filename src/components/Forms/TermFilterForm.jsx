@@ -25,13 +25,13 @@ const TermFilterForm = ({ getRedirectPath }) => {
   return (
     <Form onSubmit={formik.handleSubmit}>
       <Form.Row className="justify-content-end">
-        <Col xs="auto">
+        <Col sm={6} md={4} lg={3} className="mb-2 mb-sm-0">
           <Form.Control type="text" placeholder="Поиск" name="term" onChange={formik.handleChange} value={formik.values.term}
           isInvalid={!!formik.errors.term}/>
           <Form.Control.Feedback tooltip type="invalid">{formik.errors.term}</Form.Control.Feedback>
         </Col>
         <Col xs="auto">
-          <Button variant="success" type="submit">Найти</Button>
+          <Button variant="success" type="submit" className="ml-auto">Найти</Button>
         </Col>
       </Form.Row>
     </Form>
