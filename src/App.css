@@ -2,6 +2,4 @@
 
 .nav-link.active {
   border-bottom: rgba(0,0,0,.9) solid 2px;
-  /* color: #fff!important;
-  background: var(--success)!important; */
 }
