@@ -21,10 +21,10 @@ export const getScoreMatch = (match) => {
 
 export const getLastMonthPeriod = () => {
   const d = new Date()
-  const dateTo = d.toLocaleDateString()
+  const dateTo = d.toLocaleDateString('ru-RU')
 
   d.setMonth(d.getMonth() - 1)
-  const dateFrom = d.toLocaleDateString()
+  const dateFrom = d.toLocaleDateString('ru-RU')
 
   return({dateTo: dateTo.split('.').reverse().join('-'), dateFrom: dateFrom.split('.').reverse().join('-')})
 }
