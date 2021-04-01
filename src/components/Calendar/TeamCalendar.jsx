@@ -37,8 +37,13 @@ const TeamCalendar = (props) => {
                   <Card.Img src={props.currentTeam.crestUrl} style={{ width: 100 + 'px' }} />
                 </Col>
                 <Col>
-                  <Card.Title>{props.currentTeam.name}</Card.Title>
-                  <Card.Subtitle>{props.currentTeam.area.name}</Card.Subtitle>
+                  <Card.Title as="h4">{props.currentTeam.name}</Card.Title>
+                  <Card.Subtitle as="h5" className="text-secondary">{props.currentTeam.area.name}</Card.Subtitle>
+                  <Card.Text as="div" className="mt-3">
+                    <p className="my-1">Founded: {props.currentTeam.founded}</p>
+                    <p className="my-1">Club colors: {props.currentTeam.clubColors}</p>
+                    <p className="my-1">Email: <a href={`mailto:${props.currentTeam.email}`} target="_blank">props.currentTeam.email</a></p>
+                  </Card.Text>
                 </Col>
               </Row>
             </Card.Body>
@@ -47,14 +52,14 @@ const TeamCalendar = (props) => {
         <Col lg={'6'} className={'mt-3'}>
           <Card className="text-center className={'h-100'}">
             <Card.Body>
-              <Card.Title>Введите период</Card.Title>
+              <Card.Title as="h4">Введите период</Card.Title>
               <DateFilterForm dateFrom={dateFrom} dateTo={dateTo} getRedirectPath={getRedirectPath} />
             </Card.Body>
           </Card>
         </Col>
       </Row>
       <Row className={'mt-3'}>
-        <Col>
+        <Col className="overflow-auto">
           <TeamTable list={props.list} />
         </Col>
       </Row>

@@ -10,12 +10,13 @@ const setTeams = (teams) => ({ type: SET_TEAMS, payload: { teams } })
 export const initializingApp = () => (dispatch) => {
 	Promise.all([getCompetitions(), getTeams()])
 		.then(([competitionsData, teamsData]) => {
+			console.log(competitionsData, teamsData)
 			const processedCompetitionsArray = competitionsData.competitions
 				.filter(c => c.plan === 'TIER_ONE')
 				.map(c => pick(c, ['id', 'name', 'area', 'numberOfAvailableSeasons', 'code', 'emblemUrl']))
 			const processedTeamsArray = teamsData.teams
-				.map(c => pick(c, ['id', 'name', 'shortName', 'area', 'crestUrl', 'website']))
-
+				.map(c => pick(c, ['id', 'name', 'shortName', 'area', 'crestUrl', 'website', 'email', 'founded', 'clubColors']))
+			console.log(processedCompetitionsArray, processedTeamsArray)
 			dispatch(setCompetitions(processedCompetitionsArray))
 			dispatch(setTeams(processedTeamsArray))
 		})

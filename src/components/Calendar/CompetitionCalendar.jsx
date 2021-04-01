@@ -39,11 +39,11 @@ const CompetitionCalendar = (props) => {
             <Card.Body>
               <Row>
                 <Col xs={'auto'}>
-                  <Card.Img src={props.currentCompetition.emblemUrl} style={{ width: 100 + 'px' }} />
+                  <Card.Img src={props.currentCompetition.emblemUrl || props.currentCompetition.area.ensignUrl} style={{ width: 100 + 'px' }} />
                 </Col>
                 <Col>
-                  <Card.Title>{props.currentCompetition.name}</Card.Title>
-                  <Card.Subtitle>{props.currentCompetition.area.name}</Card.Subtitle>
+                  <Card.Title as="h4">{props.currentCompetition.name}</Card.Title>
+                  <Card.Subtitle as="h5" className="text-secondary">{props.currentCompetition.area.name}</Card.Subtitle>
                 </Col>
               </Row>
             </Card.Body>
@@ -52,14 +52,14 @@ const CompetitionCalendar = (props) => {
         <Col lg={'6'} className={'mt-3'}>
           <Card className="text-center className={'h-100'}">
             <Card.Body>
-              <Card.Title>Введите период</Card.Title>
+              <Card.Title as="h4">Введите период</Card.Title>
               <DateFilterForm dateFrom={dateFrom} dateTo={dateTo} getRedirectPath={getRedirectPath} />
             </Card.Body>
           </Card>
         </Col>
       </Row>
       <Row className={'mt-3'}>
-        <Col>
+        <Col className="overflow-auto">
           <CompetitionTable list={props.list} />
         </Col>
       </Row>
