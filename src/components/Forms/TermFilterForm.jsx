@@ -27,7 +27,7 @@ const TermFilterForm = ({ getRedirectPath }) => {
       <Form.Row className="justify-content-end">
         <Col sm={6} md={4} lg={3} className="mb-2 mb-sm-0">
           <Form.Control type="text" placeholder="Поиск" name="term" onChange={formik.handleChange} value={formik.values.term}
-          isInvalid={!!formik.errors.term}/>
+          isInvalid={!!formik.errors.term} autocomplete="off"/>
           <Form.Control.Feedback tooltip type="invalid">{formik.errors.term}</Form.Control.Feedback>
         </Col>
         <Col xs="auto">
